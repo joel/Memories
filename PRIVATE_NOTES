@@ -1,4 +1,23 @@
 # Create app
 ionic start simple-ionic-8 --type=react --capacitor
 
+# Integration test
 
+# https://docs.cypress.io/guides/getting-started/installing-cypress.html#npm-install
+
+npm install cypress --save-dev
++ cypress@5.5.0
+
+npx cypress open
+
+# https://medium.com/@gxcadr/cypress-recorder-write-cypress-tests-much-easier-and-faster-6ed70b712bff
+
+npm run cypress:open
+
+# Continuous Integration with Github Actions and Cypress
+# https://andreybleme.com/2020-02-29/continuous-Integration-with-github-actions-and-cypress-end-to-end-tests/
+# https://medium.com/swlh/publish-your-cypress-test-report-with-github-actions-47248788713a
+
+npm install --save-dev mocha cypress-multi-reporters mochawesome
+npm install --save-dev mochawesome-merge
+npm install --save-dev mochawesome-report-generator
