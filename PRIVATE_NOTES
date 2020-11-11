@@ -21,3 +21,5 @@ npm run cypress:open
 npm install --save-dev mocha cypress-multi-reporters mochawesome
 npm install --save-dev mochawesome-merge
 npm install --save-dev mochawesome-report-generator
+
+npm react-scripts@3.4.4 --save-dev
