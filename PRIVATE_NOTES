@@ -1,4 +1,0 @@
-# Create app
-ionic start simple-ionic-8 --type=react --capacitor
-
-
