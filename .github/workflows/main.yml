@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+    # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  cypress-run:
+    name: Run Cypress Test on Chrome 85
+    runs-on: ubuntu-16.04
+    # https://hub.docker.com/r/cypress/browsers/tags
+    # https://docs.cypress.io/examples/examples/docker.html#Images
+    container: cypress/browsers:node12.14.1-chrome85-ff81
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Install a project with a clean slate
+        run: |
+          npm ci
+          $(npm bin)/cypress cache path
+          $(npm bin)/cypress cache list
+          $(npm bin)/cypress verify
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          project: ./
+          env: host=localhost,port=8100
+          browser: chrome
+          headless: false
+          record: true
+          parallel: true
+          start: npm start
+          wait-on: http://localhost:8100
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Copy test execution videos
+        run: |
+          mkdir -p public
+          cp -vfr cypress/videos public/videos
+          ls -ltr public/videos
+
+      - name: Merge test results into one
+        run: npm run report:merge
+
+      - name: Generate HTML report
+        run: npm run report:generate
+
+      - name: Deploy report page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          
+  # This workflow contains a single job called "build"
+  build:
+    name: Run React Tests
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run the tests
+        run: npm test
