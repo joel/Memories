@@ -1,3 +1,7 @@
 {
-    "projectId": "toe3n9"
+    "projectId": "toe3n9",
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "configFile": "reporter-config.json"
+    }
 }
