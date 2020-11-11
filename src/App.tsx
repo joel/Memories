@@ -7,8 +7,6 @@ import GoodMemories from './pages/GoodMemories';
 import BadMemories from './pages/BadMemories';
 import NewMemory from './pages/NewMemory';
 
-import Home from './pages/Home';
-
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
