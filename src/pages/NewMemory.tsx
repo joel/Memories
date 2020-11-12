@@ -1,6 +1,8 @@
 import React from 'react';
 
 import {
+  IonBackButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonPage,
@@ -13,6 +15,9 @@ const NewMemory: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot='start' id='back-button'>
+            <IonBackButton defaultHref='/good-memories' />
+          </IonButtons>
           <IonTitle>Add New Memory</IonTitle>
         </IonToolbar>
       </IonHeader>
