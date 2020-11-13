@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import {
   IonBackButton,
@@ -35,7 +35,9 @@ const NewMemory: React.FC = () => {
     path?: string;
     preview: string;
   }>();
-  const [chosenMemoryType, setChosenMemoryType] = useState<'good' | 'bad'>();
+  const [chosenMemoryType, setChosenMemoryType] = useState<'good' | 'bad'>('good');
+
+  const titleRef = useRef<HTMLIonInputElement>(null);
 
   const takePhotoHandler = async () => {
     console.log('takePhotoHandler');
@@ -64,6 +66,12 @@ const NewMemory: React.FC = () => {
   };
 
   const addMemoryHandler = async () => {
+    const enteredTitle = titleRef.current?.value;
+
+    if (!enteredTitle || enteredTitle.toString().trim().length === 0 || !takenPhoto) {
+      return;
+    };
+
     const fileName = new Date().getTime().toString() + '.jpeg';
 
     const data = await base64FromPath(takenPhoto!.preview);
@@ -96,7 +104,7 @@ const NewMemory: React.FC = () => {
             <IonCol>
               <IonItem>
                 <IonLabel position='floating'>New Memory</IonLabel>
-                <IonInput type='text'></IonInput>
+                <IonInput type='text' ref={titleRef}></IonInput>
               </IonItem>
             </IonCol>
           </IonRow>
@@ -120,7 +128,7 @@ const NewMemory: React.FC = () => {
           <IonRow>
             <IonCol>
               <IonSelect
-                value='good'
+                value={chosenMemoryType}
                 placeholder='Select One'
                 onIonChange={selectMemoryTypeHandler}
               >
