@@ -23,3 +23,5 @@ npm install --save-dev mochawesome-merge
 npm install --save-dev mochawesome-report-generator
 
 npm react-scripts@3.4.4 --save-dev
+
+# https://www.cypress.io/blog/2020/07/08/end-to-end-testing-mobile-apps-with-ionic-and-cypress/

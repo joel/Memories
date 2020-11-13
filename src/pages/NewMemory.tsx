@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 
 import {
   IonBackButton,
@@ -26,6 +26,10 @@ import { Plugins, CameraResultType, FilesystemDirectory, Filesystem, CameraSourc
 
 import { base64FromPath } from '@ionic/react-hooks/filesystem';
 
+import MemoriesContext from '../data/memories-context';
+
+import { useHistory } from 'react-router-dom'
+
 import '../theme/NewMemory.css';
 
 const { Camera } = Plugins;
@@ -38,6 +42,10 @@ const NewMemory: React.FC = () => {
   const [chosenMemoryType, setChosenMemoryType] = useState<'good' | 'bad'>('good');
 
   const titleRef = useRef<HTMLIonInputElement>(null);
+
+  const memoriesCtx = useContext(MemoriesContext);
+
+  const history = useHistory();
 
   const takePhotoHandler = async () => {
     console.log('takePhotoHandler');
@@ -81,6 +89,9 @@ const NewMemory: React.FC = () => {
       data: data,
       directory: FilesystemDirectory.Data,
     });
+
+    memoriesCtx.addMemory(fileName, enteredTitle.toString(), chosenMemoryType);
+    history.length > 0 ? history.goBack() : history.replace('/good-memories');
   };
 
   const selectMemoryTypeHandler = (event: CustomEvent) => {
@@ -114,7 +125,7 @@ const NewMemory: React.FC = () => {
                 {!takenPhoto && <h3>No Photo Chosen.</h3>}
                 {takenPhoto && <img src={takenPhoto.preview} alt='Preview' />}
               </div>
-              <IonButton fill='clear' onClick={takePhotoHandler}>
+              <IonButton fill='clear' onClick={takePhotoHandler} id='take-photo-button'>
                 <IonIcon icon={camera} slot='start' />
                 <IonLabel>Take Photo</IonLabel>
               </IonButton>
