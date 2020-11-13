@@ -25,11 +25,11 @@ import { useCamera } from '@ionic/react-hooks/camera';
 
 import '../theme/NewMemory.css';
 
-const { Camera, CameraResultType, CameraSource } = Plugins;
+const { CameraResultType, CameraSource } = Plugins;
 // import { CameraResultType, CameraSource } from '@capacitor/core';
 
 const NewMemory: React.FC = () => {
-  // const { getPhoto } = useCamera();
+  const { getPhoto } = useCamera();
 
   const [takenPhoto, setTakenPhoto] = useState<{
     path: string;
@@ -39,7 +39,7 @@ const NewMemory: React.FC = () => {
   const takePhotoHandler = async () => {
     console.log('takePhotoHandler');
     
-    const photo = await Camera.getPhoto({
+    const photo = await getPhoto({
       resultType: CameraResultType.Uri,
       source: CameraSource.Camera,
       quality: 80,
