@@ -20,36 +20,32 @@ import {
 
 import { camera } from 'ionicons/icons';
 
-import { Plugins } from '@capacitor/core';
-import { useCamera } from '@ionic/react-hooks/camera';
+import { Plugins, CameraResultType } from '@capacitor/core';
 
 import '../theme/NewMemory.css';
 
-const { CameraResultType, CameraSource } = Plugins;
-// import { CameraResultType, CameraSource } from '@capacitor/core';
+const { Camera } = Plugins;
 
 const NewMemory: React.FC = () => {
-  const { getPhoto } = useCamera();
-
   const [takenPhoto, setTakenPhoto] = useState<{
-    path: string;
+    path?: string;
     preview: string;
   }>();
 
   const takePhotoHandler = async () => {
     console.log('takePhotoHandler');
     
-    const photo = await getPhoto({
+    const photo = await Camera.getPhoto({
       resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
-      quality: 80,
-      width: 500,
+      quality: 80
     });
     
     console.log(photo);
 
-    if (!photo || !photo.path || !photo.webPath) {
+    if (!photo || !photo.webPath) {
       console.log('We do not get a photo, RETURN');
+      console.log('photo.path: [' + photo.path + ']');
+      console.log('photo.webPath: [' + photo.webPath + ']');
       return;
     }
 
