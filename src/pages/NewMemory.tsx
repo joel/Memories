@@ -14,6 +14,8 @@ import {
   IonLabel,
   IonPage,
   IonRow,
+  IonSelect,
+  IonSelectOption,
   IonTitle,
   IonToolbar,
 } from '@ionic/react';
@@ -33,6 +35,7 @@ const NewMemory: React.FC = () => {
     path?: string;
     preview: string;
   }>();
+  const [chosenMemoryType, setChosenMemoryType] = useState<'good' | 'bad'>();
 
   const takePhotoHandler = async () => {
     console.log('takePhotoHandler');
@@ -72,6 +75,11 @@ const NewMemory: React.FC = () => {
     });
   };
 
+  const selectMemoryTypeHandler = (event: CustomEvent) => {
+    const selectedMemoryType = event.detail.value;
+    setChosenMemoryType(selectedMemoryType);
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -96,7 +104,7 @@ const NewMemory: React.FC = () => {
             <IonCol>
               <div className='image-preview'>
                 {!takenPhoto && <h3>No Photo Chosen.</h3>}
-                {takenPhoto && <img src={takenPhoto.preview} alt='Preview'/>}
+                {takenPhoto && <img src={takenPhoto.preview} alt='Preview' />}
               </div>
               <IonButton fill='clear' onClick={takePhotoHandler}>
                 <IonIcon icon={camera} slot='start' />
@@ -107,6 +115,18 @@ const NewMemory: React.FC = () => {
           <IonRow className='ion-margin-top'>
             <IonCol className='ion-text-center'>
               <IonButton onClick={addMemoryHandler}>Add Memory</IonButton>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonSelect
+                value='good'
+                placeholder='Select One'
+                onIonChange={selectMemoryTypeHandler}
+              >
+                <IonSelectOption value='good'>Good Memory</IonSelectOption>
+                <IonSelectOption value='bad'>Bad Memory</IonSelectOption>
+              </IonSelect>
             </IonCol>
           </IonRow>
         </IonGrid>
