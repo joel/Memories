@@ -5,5 +5,7 @@
         "configFile": "reporter-config.json"
     },
     "viewportHeight": 640,
-    "viewportWidth": 360
+    "viewportWidth": 360,
+    "experimentalComponentTesting": true,
+    "componentFolder": "cypress/components"
 }
