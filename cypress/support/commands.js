@@ -23,3 +23,8 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("addTitle", (title) => {
+    cy.get('input[name="memory-title-input"]').type(title);    
+})
+

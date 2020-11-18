@@ -115,7 +115,7 @@ const NewMemory: React.FC = () => {
             <IonCol>
               <IonItem>
                 <IonLabel position='floating'>New Memory</IonLabel>
-                <IonInput type='text' ref={titleRef}></IonInput>
+                <IonInput type='text' ref={titleRef} name='memory-title-input'></IonInput>
               </IonItem>
             </IonCol>
           </IonRow>
@@ -133,7 +133,7 @@ const NewMemory: React.FC = () => {
           </IonRow>
           <IonRow className='ion-margin-top'>
             <IonCol className='ion-text-center'>
-              <IonButton onClick={addMemoryHandler}>Add Memory</IonButton>
+              <IonButton onClick={addMemoryHandler} id='add-memory-btn'>Add Memory</IonButton>
             </IonCol>
           </IonRow>
           <IonRow>
