@@ -1,7 +1,5 @@
 /// <reference types="cypress" />
 
-const { debug } = require("console");
-
 context('Tabs', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8100');
