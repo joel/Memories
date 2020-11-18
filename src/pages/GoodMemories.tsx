@@ -59,7 +59,7 @@ const GoodMemories: React.FC = () => {
             <IonRow id={memory.id}>
               <IonCol>
                 <IonCard>
-                  <img src={memory.imagePath} alt={memory.title} />
+                  <img src={memory.base64Url} alt={memory.title} />
                   <IonCardHeader>
                     <IonCardTitle>{memory.title}</IonCardTitle>
                   </IonCardHeader>

@@ -5,11 +5,12 @@ export interface Memory {
     title: string;
     imagePath: string;
     type: 'good' | 'bad';
+    base64Url: string;
 };
 
 const MemoriesContext = React.createContext<{
   memories: Memory[];
-  addMemory: (path: string, title: string, type: 'good' | 'bad') => void;
+  addMemory: (path: string, base64Data: string, title: string, type: 'good' | 'bad') => void;
 }>({
     memories: [],
     addMemory: () => {}

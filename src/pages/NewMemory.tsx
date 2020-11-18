@@ -90,7 +90,12 @@ const NewMemory: React.FC = () => {
       directory: FilesystemDirectory.Data,
     });
 
-    memoriesCtx.addMemory(fileName, enteredTitle.toString(), chosenMemoryType);
+    memoriesCtx.addMemory(
+      fileName,
+      data, 
+      enteredTitle.toString(),
+      chosenMemoryType
+    );
     history.length > 0 ? history.goBack() : history.replace('/good-memories');
   };
 
