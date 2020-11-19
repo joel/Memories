@@ -23,32 +23,39 @@ import '../../src/theme/theme.css';
 import GoodMemories from '../../src/pages/GoodMemories';
 
 import MemoriesContext, { Memory } from '../../src/data/memories-context';
-// import MemoriesContext, { Memory } from './memories-context';
 
 describe('GoodMemories', () => {
-  it('mount component', () => {
+  it('without good memories', () => {
+    mount(
+      <div className='ion-page'>
+        <GoodMemories />
+      </div>
+    );
+    cy.contains('Good Memories').should('be.visible');
+    cy.contains('No good memories found.').should('be.visible');
+  });
+
+  it('with good memories', () => {
     const newMemory: Memory = {
       id: Math.random.toString(),
       title: 'That day!',
-      imagePath: './fixtures/pic.jpg',
+      imagePath: Math.random().toString() + '.jpg',
       type: 'good',
-      // cy.fixture('pic.jpg', 'base64').then((logo) => { return logo; })
-      base64Url:
-        'data:image/png;base64,' +
-        'iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABGdBTUEAALGP' +
-        'C/xhBQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9YGARc5KB0XV+IA' +
-        'AAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAF1J' +
-        'REFUGNO9zL0NglAAxPEfdLTs4BZM4DIO4C7OwQg2JoQ9LE1exdlYvBBeZ7jq' +
-        'ch9//q1uH4TLzw4d6+ErXMMcXuHWxId3KOETnnXXV6MJpcq2MLaI97CER3N0' +
-        'vr4MkhoXe0rZigAAAABJRU5ErkJggg==',
+      base64Url: null,
     };
 
-    const memories: Memory[] = [ newMemory ]
+    const data = cy.fixture('pic.jpg', 'base64').then((file) => {
+      const base64Url = 'data:image/jpeg;base64,' + file;
+      newMemory.base64Url = base64Url;
+    });
+
+    const memories: Memory[] = [newMemory];
 
     mount(
       <div className='ion-page'>
-        <MemoriesContext.Provider value={{
-            memories: memories
+        <MemoriesContext.Provider
+          value={{
+            memories: memories,
           }}
         >
           <GoodMemories />
@@ -56,6 +63,5 @@ describe('GoodMemories', () => {
       </div>
     );
     cy.contains('That day!').should('be.visible');
-    // cy.contains('No good memories found.').should('be.visible');
   });
 });
