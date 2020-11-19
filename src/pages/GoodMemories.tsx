@@ -56,7 +56,7 @@ const GoodMemories: React.FC = () => {
           )}
 
           {goodMemories.map((memory) => (
-            <IonRow id={memory.id}>
+            <IonRow key={memory.id}>
               <IonCol>
                 <IonCard>
                   <img src={memory.base64Url} alt={memory.title} />
@@ -70,7 +70,7 @@ const GoodMemories: React.FC = () => {
 
         </IonGrid>
         {!isPlatform('ios') && (
-          <IonFab vertical='bottom' horizontal='end'>
+          <IonFab vertical='bottom' horizontal='end' slot='fixed'>
             <IonFabButton routerLink='/new-memory' id='new-memory-button'>
               <IonIcon icon={add} />
             </IonFabButton>

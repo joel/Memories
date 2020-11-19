@@ -33,4 +33,7 @@ npm react-scripts@3.4.4 --save-dev
 ionic capacitor run android
 adb pair 192.168.1.152:40897  
 
-
+# Storage issue 
+https://developer.android.com/about/versions/11/privacy/storage
+https://github.com/ionic-team/capacitor/issues/2916
+https://github.com/ionic-team/capacitor/pull/2936/files
