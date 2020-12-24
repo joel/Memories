@@ -11,7 +11,7 @@
     "@ionic/react-hooks": "0.0.8",
     "@ionic/react-router": "^5.0.7",
     "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.0",
+    "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.2.2",
     "@types/jest": "^26.0.15",
     "@types/node": "^14.14.8",
@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "2.4.3",
-    "cypress": "^5.6.0",
+    "cypress": "^6.2.0",
     "cypress-multi-reporters": "^1.4.0",
     "cypress-react-unit-test": "^4.17.0",
     "mocha": "^8.2.1",
