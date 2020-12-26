@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@capacitor/android": "^2.4.5",
-    "@capacitor/core": "2.4.3",
+    "@capacitor/core": "2.4.5",
     "@capacitor/ios": "^2.4.3",
     "@ionic/pwa-elements": "^3.0.1",
     "@ionic/react": "^5.0.7",
@@ -59,7 +59,7 @@
     "mochawesome": "^6.2.1",
     "mochawesome-merge": "^4.2.0",
     "mochawesome-report-generator": "^5.1.0",
-    "react-scripts": "^4.0.0"
+    "react-scripts": "^4.0.1"
   },
   "description": "An Ionic project",
   "jest": {
