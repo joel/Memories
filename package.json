@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@capacitor/android": "^2.4.5",
+    "@capacitor/android": "^2.4.6",
     "@capacitor/core": "2.4.6",
     "@capacitor/ios": "^2.4.5",
     "@ionic/pwa-elements": "^3.0.2",
