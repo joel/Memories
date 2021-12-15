@@ -59,7 +59,7 @@
     "mochawesome": "^6.2.1",
     "mochawesome-merge": "^4.2.0",
     "mochawesome-report-generator": "^5.1.0",
-    "react-scripts": "^4.0.1"
+    "react-scripts": "^5.0.0"
   },
   "description": "An Ionic project",
   "jest": {
